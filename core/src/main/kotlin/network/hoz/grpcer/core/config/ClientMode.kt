@@ -1,10 +1,11 @@
-package network.hoz.grpcer.config;
+package network.hoz.grpcer.core.config
 
-public enum ClientMode {
+enum class ClientMode {
     /**
      * Uses first available connection as main, any other is backup.
      */
     NORMAL,
+
     /**
      * Each call uses different connection.
      * If the connection fails, other is used.

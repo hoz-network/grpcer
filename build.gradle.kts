@@ -1,23 +1,32 @@
 plugins {
     id("java")
+    kotlin("jvm") version "1.6.20"
 }
 
 allprojects {
-    apply {
-        plugin("idea")
-        plugin("java-library")
-    }
-
     group = "network.hoz"
     version = "1.0-SNAPSHOT"
 
     repositories {
         mavenCentral()
+        maven("https://repo.hoznet.dev/public")
+        maven("https://repo.screamingsandals.org/public")
+    }
+}
+
+
+subprojects {
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+        plugin("idea")
+        plugin("java-library")
     }
 
     dependencies {
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+        implementation(kotlin("kotlin-reflect"))
+
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     }
 
     tasks.getByName<Test>("test") {
